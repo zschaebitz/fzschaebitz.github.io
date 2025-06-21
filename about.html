@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: url('bg.png') repeat; /* Textured pattern background */
+            color: #f8f9fa;
+        }
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+        }
+        .dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            opacity: 0.7;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .dot.active {
+            background-color: grey;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #8ecae6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        .navbar a {
+            display: block;
+            width: 120px;
+            height: 40px;
+            margin: 0 10px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all 0.3s ease;
+            text-indent: -9999px; /* Hide text */
+        }
+        .navbar a.home {
+            background-image: url('home1.png');
+        }
+        .navbar a.home:hover {
+            background-image: url('home2.png');
+        }
+        .navbar a.about {
+            background-image: url('about1.png');
+        }
+        .navbar a.about:hover {
+            background-image: url('about2.png');
+        }
+        .navbar a.contact {
+            background-image: url('contact1.png');
+        }
+        .navbar a.contact:hover {
+            background-image: url('contact2.png');
+        }
+        .navbar a.cv {
+            background-image: url('cv1.png');
+        }
+        .navbar a.cv:hover {
+            background-image: url('cv2.png');
+        }
+        .content {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #212529;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #f8f9fa;
+        }
+        p {
+            margin: 0 0 20px;
+            line-height: 1.6;
+            color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="home.html" class="home">Home</a>
+        <a href="about.html" class="about">About</a>
+        <a href="#" class="contact">Contact</a>
+        <a href="#" class="cv">CV</a>
+    </div>
+    <div class="banner" id="banner">
+        <div class="dots" id="dots">
+            <div class="dot" onclick="selectImage(0)"></div>
+            <div class="dot" onclick="selectImage(1)"></div>
+            <div class="dot" onclick="selectImage(2)"></div>
+            <div class="dot" onclick="selectImage(3)"></div>
+            <div class="dot" onclick="selectImage(4)"></div>
+        </div>
+    </div>
+    <div class="content">
+        <h1>About</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <script>
+        const bannerImages = [
+            'your-banner-image.jpg',
+            'your-banner-image2.jpg',
+            'your-banner-image3.jpg',
+            'your-banner-image4.jpg',
+            'your-banner-image5.jpg'
+        ];
+
+        let currentImageIndex = 0;
+        const banner = document.getElementById('banner');
+        const dots = document.getElementById('dots').children;
+
+        function selectImage(index) {
+            currentImageIndex = index;
+            banner.style.backgroundImage = `url(${bannerImages[index]})`;
+            updateDots();
+        }
+
+        function updateDots() {
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+            dots[currentImageIndex].classList.add('active');
+        }
+
+        function changeBannerImage() {
+            currentImageIndex = (currentImageIndex + 1) % bannerImages.length;
+            selectImage(currentImageIndex);
+        }
+
+        selectImage(0);
+        setInterval(changeBannerImage, 10000);
+    </script>
+</body>
+</html>
